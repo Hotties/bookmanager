@@ -1,5 +1,6 @@
 package bookmanager.model;
 
+import java.sql.Time;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -10,12 +11,12 @@ public class Loan {
     private LocalDateTime loanDate;
     private LocalDateTime returnDate;
 
-    public Loan(int id, int bookId, int memberId) {
+    public Loan(int id, int bookId, int memberId,LocalDateTime loanDate, LocalDateTime returnDate) {
         this.id = id;
         BookId = bookId;
         this.memberId = memberId;
-        this.loanDate = LocalDateTime.now();
-        this.returnDate = LocalDateTime.now();
+        this.loanDate = loanDate;
+        this.returnDate = returnDate;
     }
 
     public int getId() {

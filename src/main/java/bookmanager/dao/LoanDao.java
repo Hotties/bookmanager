@@ -3,24 +3,26 @@ package bookmanager.dao;
 import bookmanager.model.Loan;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public interface LoanDao {
 
-    void addLoan(Loan loan);
+    void addLoan(Loan loan) throws SQLException;
 
     void addLoan(int bookId, int MemberId, Connection conn);
 
-    Loan getLoanById(int id);
+    Loan getLoanById(int id) throws SQLException;
 
-    Loan getLoanByBookId(int bookId);
+    Loan getLoanByBookId(int bookId) throws SQLException;
 
-    Loan getLoanByMemberId(int memberId);
+    Loan getLoanByMemberId(int memberId) throws SQLException;
 
-    Loan getAllLoans();
+    List<Loan> getAllLoans() throws SQLException;
 
-    void updateLoan(Loan loan);
+    void updateLoan(Loan loan) throws SQLException;
 
-    LocalDateTime updateLoanReturnDate(int LoanId, Timestamp returnDate, Connection conn);
+    void updateLoanReturnDate(int loanId, LocalDateTime returnDate, Connection conn) throws SQLException;
 }

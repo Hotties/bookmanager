@@ -14,12 +14,12 @@ public interface BookDao {
 
     Book getBookByIsbn(String isbn) throws SQLException;
 
-    List<Book> getAllBooks();
+    List<Book> getAllBooks() throws SQLException;
 
-    void updateBook(Book book);
+    void updateBook(Book book) throws SQLException;
 
-    boolean updateBookAvailability(int bookId, boolean isAvailable, Connection conn);
+    void updateBookAvailability(int bookId, boolean isAvailable, Connection conn) throws SQLException;
 
-    void deleteBook(int bookId);
+    void deleteBook(int bookId) throws SQLException;
 
 }
