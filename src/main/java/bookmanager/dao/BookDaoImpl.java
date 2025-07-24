@@ -117,7 +117,7 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public void updateBook(Book book) {
-
+        String query;
     }
 
     @Override
