@@ -1,0 +1,8 @@
+
+
+{
+    url : "jdbc:mysql://localhost:3306/bookmanager?useSSL=false"
+    userName : "root"
+    pwd : "5060"
+
+}
