@@ -16,13 +16,15 @@ public interface LoanDao {
 
     Loan getLoanById(int id) throws SQLException;
 
-    Loan getLoanByBookId(int bookId) throws SQLException;
+    List<Loan> getLoanByBookId(int bookId) throws SQLException;
 
-    Loan getLoanByMemberId(int memberId) throws SQLException;
+    List<Loan> getLoanByMemberId(int memberId) throws SQLException;
 
     List<Loan> getAllLoans() throws SQLException;
 
     void updateLoan(Loan loan) throws SQLException;
 
     void updateLoanReturnDate(int loanId, LocalDateTime returnDate, Connection conn) throws SQLException;
+
+    void deleteLoan(int id) throws SQLException;
 }

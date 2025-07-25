@@ -1,45 +1,21 @@
 package bookmanager.service;
 
-import bookmanager.dao.BookDao;
-import bookmanager.dao.LoanDao;
-import bookmanager.dao.MemberDao;
 import bookmanager.model.Book;
-import bookmanager.util.ConnectionPoolManager;
 
-public class BookService {
+import java.sql.SQLException;
+import java.util.List;
 
-    private BookDao bookDao;
-    private MemberDao memberDao;
-    private LoanDao loanDao;
-    private ConnectionPoolManager connectionPool;
+public interface BookService {
 
-    public void addBook(Book book) {
+    void registerBook(Book book) throws SQLException;
 
-    }
+    Book getBookDetails(int Id) throws SQLException;
 
-    public void removeBook(Book book) {
+    Book getBookDetailsByISBN(String ISBN) throws SQLException;
 
-    }
+    List<Book> searchBooks(String keyword) throws  SQLException;
 
-    public void updateBookInfo(Book book) {
+    void updateBookDetails(Book book) throws SQLException;
 
-    }
-
-    public void getAllBooks() {
-
-    }
-
-    public Book searchBooks(String query) {
-        return null;
-    }
-
-    public boolean borrowBook(int bookId, int memberId) {
-        return true;
-    }
-
-    public boolean returnBook(int bookId, int memberId) {
-        return true;
-    }
-
-
+    void removeBook(int Id) throws SQLException;
 }

@@ -14,6 +14,10 @@ public interface BookDao {
 
     Book getBookByIsbn(String isbn) throws SQLException;
 
+    Book getBookByAuthor(String author) throws SQLException;
+
+    Book getBookByTitle(String title) throws SQLException;
+
     List<Book> getAllBooks() throws SQLException;
 
     void updateBook(Book book) throws SQLException;

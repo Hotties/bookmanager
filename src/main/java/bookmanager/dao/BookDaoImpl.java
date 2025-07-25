@@ -89,6 +89,56 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
+    public Book getBookByAuthor(String author) throws SQLException {
+
+        Book book = null;
+        String query = "SELECT * FROM Books WHERE author=?";
+
+        try (Connection conn = ConnectionPoolManager.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            pstmt.setString(1, author);
+            //반환되는 query를 읽는 과정
+
+            try(ResultSet rs = pstmt.executeQuery()) {
+                if(rs.next()){
+                    book = createBookFromResultSet(rs);
+                }
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error bringing book: " + e.getMessage());
+            throw e;
+        }
+        return book;
+    }
+
+    @Override
+    public Book getBookByTitle(String title) throws SQLException {
+
+        Book book = null;
+        String query = "SELECT * FROM Books WHERE title=?";
+
+        try (Connection conn = ConnectionPoolManager.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            pstmt.setString(1, title);
+            //반환되는 query를 읽는 과정
+
+            try(ResultSet rs = pstmt.executeQuery()) {
+                if(rs.next()){
+                    book = createBookFromResultSet(rs);
+                }
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error bringing book: " + e.getMessage());
+            throw e;
+        }
+        return book;
+    }
+
+    @Override
     public List<Book> getAllBooks() throws SQLException {
         List<Book> books = new ArrayList<>();
         String query = "SELECT id,title,author,isbn,is_available FROM Books";

@@ -75,43 +75,37 @@ public class LoanDaoImpl implements LoanDao {
     }
 
     @Override
-    public Loan getLoanByBookId(int bookId) throws SQLException {
-        Loan loan = null;
+    public List<Loan> getLoanByBookId(int bookId) throws SQLException {
+        List<Loan> loans = new ArrayList<>();
         String query = "SELECT * FROM Loans WHERE book_id = ?";
-        try(Connection conn = ConnectionPoolManager.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(query)) {
-            pstmt.setInt(1, bookId);
 
-            try(ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    loan = createLoanfromResultSet(rs);
-                }
-            }
-        } catch (SQLException e){
-            System.err.println("Error getting Loan: " + e.getMessage());
-            throw e;
-        }
-        return loan;
+        return getLoans(bookId, loans, query);
     }
 
     @Override
-    public Loan getLoanByMemberId(int memberId) throws SQLException {
-        Loan loan = null;
+    public List<Loan> getLoanByMemberId(int memberId) throws SQLException {
+        List<Loan> loans = new ArrayList<>();
         String query = "SELECT * FROM Loans WHERE member_id = ?";
+
+        return getLoans(memberId, loans, query);
+    }
+
+    private List<Loan> getLoans(int Id, List<Loan> loans, String query) throws SQLException {
         try(Connection conn = ConnectionPoolManager.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query)) {
-            pstmt.setInt(1, memberId);
+            pstmt.setInt(1, Id);
 
             try(ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
-                    loan = createLoanfromResultSet(rs);
+                    Loan loan = createLoanfromResultSet(rs);
+                    loans.add(loan);
                 }
             }
         } catch (SQLException e){
             System.err.println("Error getting Loan: " + e.getMessage());
             throw e;
         }
-        return loan;
+        return loans;
     }
 
     @Override
@@ -167,6 +161,20 @@ public class LoanDaoImpl implements LoanDao {
             pstmt.executeUpdate();
         }catch (SQLException e){
             System.err.println("Error updating return_date: " + e.getMessage());
+            throw e;
+        }
+    }
+
+    @Override
+    public void deleteLoan(int id) throws SQLException {
+        String query = "DELETE FROM Loans WHERE id = ?";
+
+        try(Connection conn = ConnectionPoolManager.getConnection();
+        PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        }catch (SQLException e){
+            System.err.println("Error deleting loans: " + e.getMessage());
             throw e;
         }
     }
