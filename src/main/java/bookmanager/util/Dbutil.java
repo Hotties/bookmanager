@@ -10,7 +10,7 @@ import java.sql.Statement;
 import java.util.Objects;
 
 public class Dbutil {
-    private static void initializeDatabase(Connection conn) throws SQLException, IOException {
+    public static void initializeDatabase(Connection conn) throws SQLException, IOException {
 
         String schemaFilePath = "schema.sql";
 

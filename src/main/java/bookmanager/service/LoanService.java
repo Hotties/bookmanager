@@ -13,8 +13,10 @@ public interface LoanService {
 
     List<Loan> getActiveLoans() throws SQLException;
 
-    List<Loan> getLoansByBookId(int id) throws SQLException;
+    Loan getLoanDetails(int loanId) throws SQLException;
 
-    List<Loan> getLoansByMemberId(int id) throws SQLException;
+    List<Loan> getLoansByBookId(int bookId) throws SQLException;
+
+    List<Loan> getLoansByMemberId(int memberId) throws SQLException;
 
 }

@@ -10,13 +10,15 @@ public class Loan {
     private int memberId;
     private LocalDateTime loanDate;
     private LocalDateTime returnDate;
+    private LocalDateTime dueDate;
 
-    public Loan(int id, int bookId, int memberId,LocalDateTime loanDate, LocalDateTime returnDate) {
+    public Loan(int id, int bookId, int memberId,LocalDateTime loanDate, LocalDateTime returnDate, LocalDateTime dueDate) {
         this.id = id;
         BookId = bookId;
         this.memberId = memberId;
         this.loanDate = loanDate;
         this.returnDate = returnDate;
+        this.dueDate = dueDate;
     }
 
     public int getId() {

@@ -8,13 +8,16 @@ import java.util.List;
 
 public interface MemberService {
 
-    void registerMember(Member member) throws SQLException;
 
-    Member getMemberDetails(int id) throws SQLException;
+   void addMember(Member member) throws SQLException;
 
-    void updateMemberInfo(Member member) throws SQLException;
+   Member getMemberById(int memberId) throws SQLException;
 
-    void deleteMember(int id) throws SQLException;
+   void updateMember(Member member) throws SQLException;
 
-    List<Member> getAllMembers() throws SQLException;
+   void deleteMember(int memberId) throws SQLException;
+
+   List<Member> getAllMembers() throws SQLException;
+
+
 }

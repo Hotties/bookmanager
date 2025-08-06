@@ -10,20 +10,27 @@ public interface BookDao {
 
     void addBook(Book book) throws SQLException;
 
+    void incrementBookCopies(int bookId, int count, Connection conn) throws SQLException;
+
+    void decrementBookCopies(int bookId, int count, Connection conn) throws SQLException;
+
+    void incrementAvailableCopies(int bookId, int count, Connection conn) throws SQLException;
+
+    void decrementAvailableCopies(int bookId, int count, Connection conn) throws SQLException;
+
     Book getBookById(int id) throws SQLException;
 
     Book getBookByIsbn(String isbn) throws SQLException;
 
-    Book getBookByAuthor(String author) throws SQLException;
+    List<Book> getBooksByAuthor(String author) throws SQLException;
 
-    Book getBookByTitle(String title) throws SQLException;
+    List<Book> getBooksByTitle(String title) throws SQLException;
+
+    List<Book> getBooksByKeyword(String keyword) throws SQLException;
 
     List<Book> getAllBooks() throws SQLException;
 
     void updateBook(Book book) throws SQLException;
 
-    void updateBookAvailability(int bookId, boolean isAvailable, Connection conn) throws SQLException;
-
     void deleteBook(int bookId) throws SQLException;
-
 }

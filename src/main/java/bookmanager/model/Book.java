@@ -9,22 +9,23 @@ public class Book {
     private String title;
     private String author;
     private String isbn;
-    private boolean isAvailable;
+    private int totalCopies;
+    private int availableCopies;
 
 
-    public Book(int id, String title, String author, String isbn, boolean isAvailable) {
+    public Book(int id, String title, String author, String isbn, int totalCopies, int availableCopies) {
         this.id = id;
         this.title = title;
-        this.isAvailable = isAvailable;
         this.author = author;
         this.isbn = isbn;
+        this.totalCopies = totalCopies;
+        this.availableCopies = availableCopies;
     }
 
     //데이터 베이스에 새로 저장될때의 생성자
-    public Book(String title, String author, boolean isAvailable, String isbn) {
+    public Book(String title, String author, String isbn) {
         this.title = title;
         this.author = author;
-        this.isAvailable = isAvailable;
         this.isbn = isbn;
     }
 
@@ -44,8 +45,16 @@ public class Book {
         return isbn;
     }
 
+    public int getAvailableCopies() {
+        return availableCopies;
+    }
+
+    public int getTotalCopies() {
+        return totalCopies;
+    }
+
     public boolean isAvailable() {
-        return true;
+        return this.availableCopies > 0;
     }
 
 
@@ -65,9 +74,14 @@ public class Book {
         this.isbn = isbn;
     }
 
-    public void setAvailable(boolean available) {
-        isAvailable = available;
+    public void setAvailableCopies(int availableCopies) {
+        this.availableCopies = availableCopies;
     }
+
+    public void setTotalCopies(int totalCopies) {
+        this.totalCopies = totalCopies;
+    }
+
 
     @Override
     public String toString() {
@@ -76,24 +90,21 @@ public class Book {
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 ", isbn='" + isbn + '\'' +
-                ", isAvailable=" + isAvailable +
+                ", totalCopies=" + totalCopies +
+                ", availableCopies=" + availableCopies +
                 '}';
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        // ISBN은 책을 고유하게 식별할 수 있는 가장 좋은 필드이므로,
-        // 여기서는 ISBN을 기준으로 동등성을 비교하도록 구현했습니다.
-        // ID도 고유하지만, 데이터베이스에 저장되기 전에는 없을 수 있습니다.
-        return Objects.equals(isbn, book.isbn);
+        return id == book.id && totalCopies == book.totalCopies && availableCopies == book.availableCopies && Objects.equals(title, book.title) && Objects.equals(author, book.author) && Objects.equals(isbn, book.isbn);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(isbn);
+        return Objects.hash(id, title, author, isbn, totalCopies, availableCopies);
     }
 }
 

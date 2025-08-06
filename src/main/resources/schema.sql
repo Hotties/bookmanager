@@ -7,8 +7,9 @@ CREATE TABLE IF NOT EXISTS Books (
                                      id INT AUTO_INCREMENT PRIMARY KEY,
                                      title VARCHAR(255) NOT NULL,
     author VARCHAR(255) NOT NULL,
-    isbn VARCHAR(20) UNIQUE NOT NULL,
-    is_available BOOLEAN DEFAULT TRUE
+    isbn VARCHAR(20) UNIQUE NOT NULL, -- ISBN은 여전히 UNIQUE 유지!
+    total_copies INT DEFAULT 1,      -- 총 보유 권수
+    available_copies INT DEFAULT 1   -- 현재 대출 가능한 권수
     );
 
 CREATE TABLE IF NOT EXISTS Members (
