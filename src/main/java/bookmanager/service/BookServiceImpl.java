@@ -35,6 +35,15 @@ public class BookServiceImpl implements BookService {
         }
     }
 
+    // bookmanager.service.BookServiceImpl
+    @Override
+    public List<Book> getAllBooks() throws SQLException {
+        // 트랜잭션이 필요하지 않은 단순 조회 작업이므로,
+        // Connection 객체를 직접 관리하지 않고 DAO에 맡깁니다.
+        // BookDaoImpl은 자체적으로 Connection을 열고 닫을 것입니다.
+        return bookDao.getAllBooks();
+    }
+
     @Override
     public Book getBookDetails(int id) throws SQLException {
         Book book = bookDao.getBookById(id);

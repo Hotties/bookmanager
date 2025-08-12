@@ -9,6 +9,8 @@ public interface BookService {
 
     void registerBook(Book book) throws SQLException;
 
+    List<Book> getAllBooks() throws SQLException;
+
     Book getBookDetails(int Id) throws SQLException;
 
     Book getBookDetailsByISBN(String ISBN) throws SQLException;
